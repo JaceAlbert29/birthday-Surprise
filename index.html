@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Captain</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="falling-ships" aria-hidden="true"></div>
+<audio id="birthdayMusic" src="assets/music/background.mp3" loop preload="auto"></audio>
+
+<section class="home-screen" id="homeScreen">
+    <div class="harbor-glow" aria-hidden="true"></div>
+    <div class="lanterns" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="brand">
+            <span class="anchor">&#9875;</span>
+            <div>
+                <h3>IMP SHIPYARD</h3>
+            </div>
+        </div>
+
+        <div class="nav-links" aria-label="Website sections">
+            <a class="active" href="#homeScreen">Home</a>
+            <button type="button" onclick="startVoyage()">Voyage</button>
+            <button type="button" onclick="showPhotos()">Gallery</button>
+            <button type="button" onclick="showVideos()">Video Clips</button>
+            <a href="#birthdayMessage">Message</a>
+        </div>
+
+        <button class="music-btn" id="musicBtn" type="button" aria-label="Toggle music">&#9835;</button>
+    </nav>
+
+    <main class="layout">
+        <section class="left-panel" aria-labelledby="heroTitle">
+            <div class="hero-text">
+                <p class="script">Happy</p>
+                <h1 id="heroTitle">Birthday,<br><span class="captain-name">Capt. Constantino<br>Arcellana Jr.</span></h1>
+
+                <div class="divider"><span></span>&#9875;<span></span></div>
+
+                <p class="tagline">
+                    Thank you for leading our journey, inspiring
+                    and steering us toward greater success.
+                </p>
+
+                <button class="start-btn" type="button" onclick="startVoyage()">
+                    <span>&#9881;</span> Start Voyage <strong>&rarr;</strong>
+                </button>
+            </div>
+        </section>
+
+        <section class="right-panel" id="birthdayMessage" aria-labelledby="messageTitle">
+            <div class="message-card">
+                <p class="badge">&#9875; Captain's Voyage &#9875;</p>
+
+                <h2 id="messageTitle">A Special Birthday Message</h2>
+                <h4>For Our Executive Director</h4>
+
+                <div class="line"><span></span>&#9875;<span></span></div>
+
+                <div class="message-box">
+                    <article class="message-text">
+                        <p><b>Happy Birthday, Capt</b></p>
+
+                        <p>
+                            Wishing you a wonderful birthday filled with happiness,
+                            good health, and continued success.
+                        </p>
+
+                        <p>
+                            Thank you for your leadership, guidance, and unwavering support.
+                            Your vision and dedication continue to inspire us every day.
+                        </p>
+
+                        <p>
+                            May this year bring you more achievements, new adventures,
+                            and endless blessings.
+                        </p>
+
+                        <p class="signature">- From Your IMP Shipyard Family</p>
+                    </article>
+
+                    <figure class="boss-photo">
+                        <img src="assets/photos/photo1.jpg" alt="Boss portrait" data-fallback="true">
+                        <figcaption>Our Captain</figcaption>
+                    </figure>
+                </div>
+
+                <div class="explore">
+                    <p><span></span> Explore More <span></span></p>
+
+                    <div class="explore-grid">
+                        <button type="button" onclick="showPhotos()">
+                            <span class="explore-icon">&#128247;</span>
+                            <strong>View Photos</strong>
+                            <small>Memories & Moments</small>
+                            <em>&rsaquo;</em>
+                        </button>
+
+                        <button type="button" onclick="showVideos()">
+                            <span class="explore-icon">&#9658;</span>
+                            <strong>Watch Video Clips</strong>
+                            <small>Birthday Greetings</small>
+                            <em>&rsaquo;</em>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <p class="footer-text">&#9875; Fair winds and following seas, Captain! &#9875;</p>
+</section>
+
+<section class="radar-screen hidden" id="radarScreen" aria-live="polite">
+    <div class="radar-shell">
+        <p class="badge">&#9875; Voyage Scanner &#9875;</p>
+        <h2>Locating Our Captain...</h2>
+
+        <div class="radar">
+            <div class="sweep"></div>
+            <div class="target">&#9973;</div>
+        </div>
+
+        <p id="radarText">Scanning shipyard coordinates...</p>
+    </div>
+</section>
+
+<section class="gallery-screen hidden" id="galleryScreen">
+    <button class="back-btn" type="button" onclick="backHome()">&larr; Back</button>
+    <div class="screen-heading">
+        <p class="badge">&#9875; Memories Deck &#9875;</p>
+        <h1>Memories & Moments</h1>
+    </div>
+
+    <div class="gallery-card">
+        <div class="gallery-frame">
+            <img id="galleryPhoto" src="assets/photos/photo1.jpg" alt="Boss photo" data-fallback="true">
+        </div>
+
+        <div class="gallery-buttons">
+            <button type="button" onclick="prevPhoto()">&larr; Previous</button>
+            <button type="button" onclick="nextPhoto()">Next &rarr;</button>
+        </div>
+    </div>
+</section>
+
+<section class="video-screen hidden" id="videoScreen">
+    <button class="back-btn" type="button" onclick="backHome()">&larr; Back</button>
+    <div class="screen-heading">
+        <p class="badge">&#9875; Greeting Harbor &#9875;</p>
+        <h1>Birthday Video Greetings</h1>
+    </div>
+
+    <div class="video-grid" id="videoGrid">
+        <div class="video-card">
+            <video src="assets/videos/video1.mp4" controls preload="metadata" playsinline></video>
+            <p>Birthday Greeting Clip</p>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

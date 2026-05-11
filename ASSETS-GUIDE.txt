@@ -1,0 +1,48 @@
+HOW TO ADD OR CHANGE FILES
+
+PHOTOS
+Folder:
+assets/photos/
+
+Use these file names:
+photo1.jpg
+photo2.jpg
+photo3.jpg
+photo4.jpg
+...
+photo30.jpg
+
+The website will automatically include existing photos from photo1 up to photo30.
+Allowed extensions:
+.jpg
+.jpeg
+.png
+
+Examples:
+photo5.jpg
+photo6.jpeg
+photo7.png
+
+Use photo1.jpg as the main portrait on the message card.
+
+VIDEOS
+Folder:
+assets/videos/
+
+Use these file names:
+video1.mp4
+video2.mp4
+video3.mp4
+...
+video10.mp4
+
+The website will automatically show existing videos from video1.mp4 up to video10.mp4.
+
+MUSIC
+Folder:
+assets/music/
+
+Use this file name:
+background.mp3
+
+To change the background music, replace assets/music/background.mp3 with another MP3 file using the same file name.
