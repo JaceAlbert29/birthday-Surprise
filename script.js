@@ -15,12 +15,12 @@ const photoCandidates = Array.from({ length: 30 }, (_, index) => index + 1);
 
 const videoCandidates = [
     {
-        src: "assets/videos/video1.mp4",
+        src: "video1.mp4",
         title: "Birthday Greeting Clip"
     }
 ];
 
-let photos = [{ src: "assets/photos/photo1.jpg", isPortrait: true, index: 0 }];
+let photos = [{ src: "photo1.jpg", isPortrait: true, index: 0 }];
 let currentPhoto = 0;
 let slideshowTimer;
 let radarTimers = [];
@@ -154,7 +154,7 @@ function loadPhotoCandidate(index) {
                 return;
             }
 
-            const src = `assets/photos/photo${index}.${photoExtensions[extensionIndex]}`;
+            const src = `photo${index}.${photoExtensions[extensionIndex]}`;
             const image = new Image();
 
             extensionIndex += 1;
