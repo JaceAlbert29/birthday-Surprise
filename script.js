@@ -10,17 +10,20 @@ const musicBtn = document.getElementById("musicBtn");
 const birthdayMusic = document.getElementById("birthdayMusic");
 const videoGrid = document.getElementById("videoGrid");
 
+const photoBasePath = "assets/photos";
+const videoBasePath = "assets/videos";
+const musicBasePath = "assets/music";
 const photoExtensions = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG"];
+const musicExtensions = ["mp4", "mp3", "m4a"];
 const photoCandidates = Array.from({ length: 30 }, (_, index) => index + 1);
+const videoCandidates = Array.from({ length: 10 }, (_, index) => ({
+    src: `${videoBasePath}/video${index + 1}.mp4`,
+    title: index === 0 ? "Birthday Greeting Clip" : `Birthday Greeting Clip ${index + 1}`,
+    index: index + 1
+}));
 
-const videoCandidates = [
-    {
-        src: "video1.mp4",
-        title: "Birthday Greeting Clip"
-    }
-];
-
-let photos = [{ src: "photo1.jpg", isPortrait: true, index: 0 }];
+let photos = [{ src: `${photoBasePath}/photo1.jpg`, isPortrait: true, index: 0 }];
+let videos = [videoCandidates[0]];
 let currentPhoto = 0;
 let slideshowTimer;
 let radarTimers = [];
@@ -154,7 +157,7 @@ function loadPhotoCandidate(index) {
                 return;
             }
 
-            const src = `photo${index}.${photoExtensions[extensionIndex]}`;
+            const src = `${photoBasePath}/photo${index}.${photoExtensions[extensionIndex]}`;
             const image = new Image();
 
             extensionIndex += 1;
@@ -195,7 +198,7 @@ function loadAvailablePhotos() {
 function buildVideoGallery() {
     videoGrid.innerHTML = "";
 
-    videoCandidates.forEach((videoItem) => {
+    videos.forEach((videoItem) => {
         const card = document.createElement("div");
         const video = document.createElement("video");
         const label = document.createElement("p");
@@ -209,6 +212,54 @@ function buildVideoGallery() {
 
         card.append(video, label);
         videoGrid.appendChild(card);
+    });
+}
+
+function loadVideoCandidate(videoItem) {
+    return new Promise((resolve) => {
+        const video = document.createElement("video");
+
+        video.preload = "metadata";
+        video.onloadedmetadata = () => resolve(videoItem);
+        video.onerror = () => resolve(null);
+        video.src = videoItem.src;
+    });
+}
+
+function loadAvailableVideos() {
+    Promise.all(videoCandidates.map(loadVideoCandidate)).then((results) => {
+        const availableVideos = results
+            .filter(Boolean)
+            .sort((a, b) => a.index - b.index);
+
+        if (!availableVideos.length) {
+            return;
+        }
+
+        videos = availableVideos;
+        buildVideoGallery();
+    });
+}
+
+function loadMusicCandidate(extension) {
+    return new Promise((resolve) => {
+        const audio = document.createElement("audio");
+        const src = `${musicBasePath}/background.${extension}`;
+
+        audio.preload = "metadata";
+        audio.onloadedmetadata = () => resolve(src);
+        audio.onerror = () => resolve(null);
+        audio.src = src;
+    });
+}
+
+function loadAvailableMusic() {
+    Promise.all(musicExtensions.map(loadMusicCandidate)).then((results) => {
+        const availableMusic = results.find(Boolean);
+
+        if (availableMusic) {
+            birthdayMusic.src = availableMusic;
+        }
     });
 }
 
@@ -294,6 +345,7 @@ function toggleMusic() {
 
 musicBtn.addEventListener("click", toggleMusic);
 loadAvailablePhotos();
-buildVideoGallery();
+loadAvailableVideos();
+loadAvailableMusic();
 prepareMediaFallbacks();
 window.setInterval(createFallingShip, 900);

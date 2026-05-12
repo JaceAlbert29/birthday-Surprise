@@ -44,5 +44,8 @@ assets/music/
 
 Use this file name:
 background.mp3
+background.mp4
+background.m4a
 
-To change the background music, replace assets/music/background.mp3 with another MP3 file using the same file name.
+To change the background music, replace the file in assets/music/ using one of the names above.
+The website will use background.mp4 first when it exists.
